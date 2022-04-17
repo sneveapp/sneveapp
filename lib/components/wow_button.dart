@@ -11,6 +11,8 @@ class WowButton extends StatefulWidget {
 }
 
 class _WowButtonState extends State<WowButton> {
+  final double _wowButtonSize = 35;
+
   late bool _isWow = widget.isWow;
 
   void _toggleWow() {
@@ -21,13 +23,15 @@ class _WowButtonState extends State<WowButton> {
       _isWow = !_isWow;
     });
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       child: Container(
-        child: Text(_isWow ? "😮" : "😐", style: Theme.of(context).textTheme.button),
-      ),
+          child: Text(
+        _isWow ? "😮" : "😐",
+        style: TextStyle(fontSize: _wowButtonSize),
+      )),
       onTap: _toggleWow,
     );
   }
