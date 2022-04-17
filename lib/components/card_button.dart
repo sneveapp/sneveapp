@@ -10,29 +10,29 @@ class CardButton extends StatelessWidget {
     return OutlinedButton(
       onPressed: () => {print("")},
       style: ButtonStyle(
-        side: MaterialStateProperty.all(
-            BorderSide(
-                color: Color(getColor()),
-                width: 3.0,
-                style: BorderStyle.solid)),
-        shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0))),
-
+        side: MaterialStateProperty.all(BorderSide(
+            color: Color(getColor()), width: 2.0, style: BorderStyle.solid)),
+        shape: MaterialStateProperty.all(
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0))),
       ),
       child: Container(
-          padding: const EdgeInsets.all(10),
+          padding: const EdgeInsets.only(right: 0, left: 0, bottom: 4, top: 4),
           child: Row(
             children: [
               Icon(getIcon(), color: Color(getColor())),
               SizedBox(width: 4),
-              Text(getText(), style: TextStyle(color: Color(getColor())),)
+              Text(
+                getText(),
+                style: TextStyle(
+                    color: Color(getColor()), fontWeight: FontWeight.bold),
+              )
             ],
-          )
-      ),
+          )),
     );
   }
 
   int getColor() {
-    switch(type) {
+    switch (type) {
       case CardType.memory:
         return 0xff000000;
       case CardType.event:
@@ -43,7 +43,7 @@ class CardButton extends StatelessWidget {
   }
 
   String getText() {
-    switch(type) {
+    switch (type) {
       case CardType.memory:
         return "Relive";
       case CardType.event:
@@ -54,7 +54,7 @@ class CardButton extends StatelessWidget {
   }
 
   IconData getIcon() {
-    switch(type) {
+    switch (type) {
       case CardType.memory:
         return Icons.replay;
       case CardType.event:
