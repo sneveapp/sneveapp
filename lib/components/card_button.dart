@@ -7,28 +7,31 @@ class CardButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return OutlinedButton(
-      onPressed: () => {print("")},
-      style: ButtonStyle(
-        side: MaterialStateProperty.all(BorderSide(
-            color: Color(getColor()), width: 2.0, style: BorderStyle.solid)),
-        shape: MaterialStateProperty.all(
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0))),
-      ),
-      child: Container(
-          padding: const EdgeInsets.only(right: 0, left: 0, bottom: 4, top: 4),
-          child: Row(
-            children: [
-              Icon(getIcon(), color: Color(getColor())),
-              SizedBox(width: 4),
-              Text(
-                getText(),
-                style: TextStyle(
-                    color: Color(getColor()), fontWeight: FontWeight.bold),
-              )
-            ],
-          )),
-    );
+    return Container(
+        margin: const EdgeInsets.only(left: 12, bottom: 0),
+        child: OutlinedButton(
+          onPressed: () => {print("")},
+          style: ButtonStyle(
+            backgroundColor: MaterialStateProperty.all<Color>(
+                Color(getInvertedColor()).withOpacity(0.8)),
+            shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8.0))),
+          ),
+          child: Container(
+              padding:
+                  const EdgeInsets.only(right: 0, left: 0, bottom: 4, top: 4),
+              child: Row(
+                children: [
+                  Icon(getIcon(), color: Color(getColor())),
+                  SizedBox(width: 8),
+                  Text(
+                    getText(),
+                    style: TextStyle(
+                        color: Color(getColor()), fontWeight: FontWeight.bold),
+                  )
+                ],
+              )),
+        ));
   }
 
   int getColor() {
@@ -37,6 +40,17 @@ class CardButton extends StatelessWidget {
         return 0xff000000;
       case CardType.event:
         return 0xffffffff;
+      default:
+        return 0;
+    }
+  }
+
+  int getInvertedColor() {
+    switch (type) {
+      case CardType.memory:
+        return 0xffffffff;
+      case CardType.event:
+        return 0xff000000;
       default:
         return 0;
     }
