@@ -44,6 +44,6 @@ class _EventsViewState extends State<EventsView> {
     name: "Working on Sneve! (again...)",
     imageUrl:
     "https://s1.qwant.com/thumbr/0x380/0/0/1b9b826b7a2125497cb22c857ae67fc62439886a46ba4b5b856b72201e5ecc/DSCN20258.jpg?u=http%3A%2F%2Fwww.starbuckseverywhere.net%2Fbigimages%2F20%2FDSCN20258.jpg&q=0&b=1&p=0&a=0",
-    ))]);
+    )),]);
   }
 }

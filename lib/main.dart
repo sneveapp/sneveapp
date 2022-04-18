@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-          primarySwatch: Colors.amber,
+          primarySwatch: Colors.deepOrange,
           primaryColor: Colors.white,
           bottomAppBarColor: Colors.grey,
           backgroundColor: Colors.white,
@@ -26,12 +26,13 @@ class MyApp extends StatelessWidget {
           dividerColor: Colors.black12,
           scaffoldBackgroundColor: Colors.white,
           appBarTheme: const AppBarTheme(
-              backgroundColor: Colors.grey,
-              titleTextStyle: TextStyle(color: Colors.black, fontSize: 25, fontWeight: FontWeight.bold)
+              elevation: 0.0,
+              backgroundColor: Colors.white,
+              titleTextStyle: TextStyle(color: Colors.deepOrange, fontSize: 25, fontWeight: FontWeight.bold)
           ),
           textTheme: const TextTheme(button: TextStyle(fontSize: 20))),
       darkTheme: ThemeData(
-        primarySwatch: Colors.amber,
+        primarySwatch: Colors.deepOrange,
         primaryColor: Colors.black,
         bottomAppBarColor: Colors.grey,
         backgroundColor: Colors.black,
@@ -40,7 +41,7 @@ class MyApp extends StatelessWidget {
         dividerColor: Colors.black12,
         scaffoldBackgroundColor: Colors.black,
         appBarTheme: const AppBarTheme(
-          backgroundColor: Colors.grey,titleTextStyle: TextStyle(color: Colors.black, fontSize: 25, fontWeight: FontWeight.bold)
+          backgroundColor: Colors.black,titleTextStyle: TextStyle(color: Colors.deepOrange, fontSize: 25, fontWeight: FontWeight.bold)
         )
       ),
       themeMode: ThemeMode.system,
