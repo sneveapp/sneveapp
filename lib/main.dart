@@ -35,7 +35,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Center(
-            child: Column(
+            child: ListView(
       children: const [
         CardComponent(
           type: CardType.memory,

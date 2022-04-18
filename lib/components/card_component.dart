@@ -1,6 +1,3 @@
-import 'dart:html';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sneve/components/card_button.dart';
 import 'package:sneve/components/wow_button.dart';
@@ -138,6 +135,23 @@ class CardComponent extends StatelessWidget {
         return const Text("");
       default:
         return const Text("");
+    }
+  }
+
+  Function getReaction() {
+    switch (type) {
+      case CardType.memory:
+        return () {
+          print("This is a memory");
+        };
+      case CardType.event:
+        return () {
+          print("This is a memory");
+        };
+      default:
+        return () {
+          print("");
+        };
     }
   }
 }
