@@ -17,81 +17,94 @@ class CardComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final double _width = MediaQuery.of(context).size.width * 0.4;
+    final double _width = MediaQuery.of(context).size.width * 0.9;
     final double _height = MediaQuery.of(context).size.height * 0.3;
 
-    return Stack(children: [
-      Container(
-        width: _width,
-        height: _height,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(_radius)),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.6),
-              spreadRadius: 3,
-              blurRadius: 5,
-              offset: const Offset(0, 3), // changes position of shadow
-            ),
-          ],
-        ),
-      ),
-      imageUrl != null
-          ? ClipRRect(
-              borderRadius: BorderRadius.circular(_radius),
-              child: Image.network(
-                imageUrl!,
-                fit: BoxFit.fitWidth,
-                width: _width,
-                height: _height,
-              ))
-          : Container(),
-      Container(
-          width: _width,
-          height: _height,
-          alignment: Alignment.bottomCenter,
-          child: Container(
+    return GestureDetector(
+        child: Stack(children: [
+          Container(
             width: _width,
-            height: _height / 2.5,
+            height: _height,
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(_radius),
-                    bottomRight: Radius.circular(_radius)),
-                gradient: LinearGradient(
-                    begin: const Alignment(0, 0),
-                    end: const Alignment(0, -1),
-                    colors: [
-                      Color(getColor()).withOpacity(0.70),
-                      Color(getColor()).withOpacity(0.0)
-                    ])),
-          )),
-      Container(
-          width: _width,
-          height: _height,
-          padding: const EdgeInsets.all(8),
-          margin: const EdgeInsets.only(bottom: 15),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(_radius)),
+              borderRadius: BorderRadius.all(Radius.circular(_radius)),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.6),
+                  spreadRadius: 3,
+                  blurRadius: 5,
+                  offset: const Offset(0, 3), // changes position of shadow
+                ),
+              ],
+            ),
           ),
-          alignment: Alignment.bottomCenter,
-          child: Row(
-            children: [
-              CardButton(type: type),
-              const SizedBox(
-                width: 12,
+          imageUrl != null
+              ? ClipRRect(
+                  borderRadius: BorderRadius.circular(_radius),
+                  child: Image.network(
+                    imageUrl!,
+                    fit: BoxFit.fitWidth,
+                    width: _width,
+                    height: _height,
+                  ))
+              : Container(),
+          Container(
+              width: _width,
+              height: _height,
+              alignment: Alignment.bottomCenter,
+              child: Container(
+                width: _width,
+                height: _height / 1.5,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(_radius),
+                        bottomRight: Radius.circular(_radius)),
+                    gradient: LinearGradient(
+                        begin: const Alignment(0, 0),
+                        end: const Alignment(0, -1),
+                        colors: [
+                          Color(getColor()).withOpacity(0.70),
+                          Color(getColor()).withOpacity(0.0)
+                        ])),
+              )),
+          Container(
+              width: _width,
+              height: _height,
+              padding: const EdgeInsets.all(8),
+              margin: const EdgeInsets.only(bottom: 15),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(_radius)),
               ),
-              Text(
-                name,
-                style: TextStyle(
-                    fontSize: 25,
-                    fontWeight: FontWeight.bold,
-                    color: Color(getTextColor())),
-              ),
-              const Spacer(),
-              getWowButton()
-            ],
-          ))
-    ]);
+              alignment: Alignment.bottomCenter,
+              child: Column(children: [
+                Row(
+                  children: [Spacer(), getWowButton()],
+                ),
+                Spacer(),
+                Row(
+                  children: [CardButton(type: type), Spacer()],
+                ),
+                Row(
+                  children: [
+                    const SizedBox(
+                      width: 12,
+                    ),
+                    Container(
+                      width: MediaQuery.of(context).size.width * 0.8,
+                      child: Text(
+                        name,
+                        style: TextStyle(
+                            fontSize:
+                                16 * MediaQuery.of(context).size.width / 250,
+                            fontWeight: FontWeight.bold,
+                            color: Color(getTextColor())),
+                      ),
+                    ),
+                    const Spacer(),
+                  ],
+                )
+              ]))
+        ]),
+        onTap: getReaction());
   }
 
   int getColor() {
@@ -138,7 +151,7 @@ class CardComponent extends StatelessWidget {
     }
   }
 
-  Function getReaction() {
+  VoidCallback getReaction() {
     switch (type) {
       case CardType.memory:
         return () {
@@ -146,7 +159,7 @@ class CardComponent extends StatelessWidget {
         };
       case CardType.event:
         return () {
-          print("This is a memory");
+          print("This is an event");
         };
       default:
         return () {
