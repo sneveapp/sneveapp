@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sneve/components/card_button.dart';
@@ -20,10 +18,11 @@ class CardComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final double _width = MediaQuery.of(context).size.width * 0.4;
+    final double _width = MediaQuery.of(context).size.width * 0.9;
     final double _height = MediaQuery.of(context).size.height * 0.3;
 
-    return Stack(children: [
+    return GestureDetector(
+        child: Stack(children: [
       Container(
         width: _width,
         height: _height,
@@ -86,7 +85,7 @@ class CardComponent extends StatelessWidget {
               Text(
                 name,
                 style: TextStyle(
-                    fontSize: 25,
+                    fontSize: 25 * MediaQuery.of(context).size.width / 570,
                     fontWeight: FontWeight.bold,
                     color: Color(getTextColor())),
               ),
@@ -94,7 +93,9 @@ class CardComponent extends StatelessWidget {
               getWowButton()
             ],
           ))
-    ]);
+    ]),
+      onTap: () => {print("Card Component has been pressed")}
+    );
   }
 
   int getColor() {
