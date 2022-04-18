@@ -8,12 +8,22 @@ class CardButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        margin: const EdgeInsets.only(left: 12, bottom: 0),
+        margin: const EdgeInsets.only(left: 12, bottom: 6),
+        decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.6),
+              spreadRadius: 1,
+              blurRadius: 10,
+              offset: const Offset(0, 0), // changes position of shadow
+            ),
+          ],
+        ),
         child: OutlinedButton(
           onPressed: () => {print("")},
           style: ButtonStyle(
             backgroundColor: MaterialStateProperty.all<Color>(
-                Color(getInvertedColor()).withOpacity(0.8)),
+                Color(getInvertedColor()).withOpacity(0.9)),
             shape: MaterialStateProperty.all(RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(8.0))),
           ),
