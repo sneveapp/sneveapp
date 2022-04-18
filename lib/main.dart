@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:sneve/components/card_component.dart';
+import 'package:sneve/components/main_navigation_bar.dart';
 import 'package:sneve/components/wow_button.dart';
+import 'package:sneve/pages/events_view.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,8 +17,33 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-          primarySwatch: Colors.blue,
+          primarySwatch: Colors.amber,
+          primaryColor: Colors.white,
+          bottomAppBarColor: Colors.grey,
+          backgroundColor: Colors.white,
+          unselectedWidgetColor: Colors.grey,
+          brightness: Brightness.light,
+          dividerColor: Colors.black12,
+          scaffoldBackgroundColor: Colors.white,
+          appBarTheme: const AppBarTheme(
+              backgroundColor: Colors.grey,
+              titleTextStyle: TextStyle(color: Colors.black, fontSize: 25, fontWeight: FontWeight.bold)
+          ),
           textTheme: const TextTheme(button: TextStyle(fontSize: 20))),
+      darkTheme: ThemeData(
+        primarySwatch: Colors.amber,
+        primaryColor: Colors.black,
+        bottomAppBarColor: Colors.grey,
+        backgroundColor: Colors.black,
+        unselectedWidgetColor: Colors.grey,
+        brightness: Brightness.dark,
+        dividerColor: Colors.black12,
+        scaffoldBackgroundColor: Colors.black,
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Colors.grey,titleTextStyle: TextStyle(color: Colors.black, fontSize: 25, fontWeight: FontWeight.bold)
+        )
+      ),
+      themeMode: ThemeMode.system,
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
@@ -27,49 +54,36 @@ class MyHomePage extends StatefulWidget {
   final String title;
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<MyHomePage> createState() => MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class MyHomePageState extends State<MyHomePage> {
+  int _selectedIndex = 0;
+  static const List<Widget> _widgetOptions = <Widget>[
+    Text("Home"),
+    Text("Social"),
+    EventsView(),
+    Text("Profile"),
+  ];
+
+  int getSelectedIndex() {
+    return _selectedIndex;
+  }
+
+  void onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(title: Text("My Eventlist")),
         body: Center(
-            child: ListView(
-          children: const [
-            SizedBox(
-              height: 12,
-            ),
-            Center(
-                child: CardComponent(
-              type: CardType.memory,
-              name: "Having dinner at Deeba",
-              imageUrl:
-                  "https://media-cdn.tripadvisor.com/media/photo-s/05/32/84/c6/interno.jpg",
-            )),
-            Center(
-                child: CardComponent(
-              type: CardType.memory,
-              name: "Working on Sneve!",
-              imageUrl:
-                  "https://www.ganz-muenchen.de/Media/bilder%20gastro/cafes/starbucks/leopoldstrasse/041114opening/041114starbucks_op35haus.jpg",
-            )),
-            Center(
-                child: CardComponent(
-              type: CardType.memory,
-              name: "Having dinner at Honghong",
-              imageUrl:
-                  "https://s2.qwant.com/thumbr/0x380/5/7/5ee8bbdac977d72850247d47fcf8e67d547bd14ef21285c55fa25b0c412fa5/680001_200615_165737NK_galerie4_800px.jpg?u=https%3A%2F%2Fgutscheinbuch.de%2Fdata%2Fcrm_vertrag%2F680001_200615_165737NK%2Fgalerie%2F680001_200615_165737NK_galerie4_800px.jpg&q=0&b=1&p=0&a=0",
-            )),
-            Center(
-                child: CardComponent(
-              type: CardType.event,
-              name: "Working on Sneve! (again...)",
-              imageUrl:
-                  "https://s1.qwant.com/thumbr/0x380/0/0/1b9b826b7a2125497cb22c857ae67fc62439886a46ba4b5b856b72201e5ecc/DSCN20258.jpg?u=http%3A%2F%2Fwww.starbuckseverywhere.net%2Fbigimages%2F20%2FDSCN20258.jpg&q=0&b=1&p=0&a=0",
-            ))
-          ],
-        )));
+          child: _widgetOptions[_selectedIndex],
+          ),
+        bottomNavigationBar: MainNavigationBar(homePageState: this),
+        );
   }
 }
