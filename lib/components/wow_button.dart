@@ -16,12 +16,13 @@ class _WowButtonState extends State<WowButton> {
   late bool _isWow = widget.isWow;
 
   void _toggleWow() {
-    if (kDebugMode) {
-      print('Wow button has been pressed.\nButton state is $_isWow');
-    }
     setState(() {
       _isWow = !_isWow;
     });
+
+    if (kDebugMode) {
+      print('Wow button has been pressed.\nButton state is $_isWow');
+    }
   }
 
   @override
