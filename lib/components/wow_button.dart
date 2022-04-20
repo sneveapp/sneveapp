@@ -3,16 +3,16 @@ import 'package:flutter/material.dart';
 
 class WowButton extends StatefulWidget {
   final bool isWow;
+  final double size;
 
-  const WowButton({Key? key, required this.isWow}) : super(key: key);
+  const WowButton({Key? key, required this.isWow, this.size = 35})
+      : super(key: key);
 
   @override
   State<WowButton> createState() => _WowButtonState();
 }
 
 class _WowButtonState extends State<WowButton> {
-  final double _wowButtonSize = 35;
-
   late bool _isWow = widget.isWow;
 
   void _toggleWow() {
@@ -31,7 +31,7 @@ class _WowButtonState extends State<WowButton> {
       child: Container(
           child: Text(
         _isWow ? "😮" : "😐",
-        style: TextStyle(fontSize: _wowButtonSize),
+        style: TextStyle(fontSize: widget.size),
       )),
       onTap: _toggleWow,
     );

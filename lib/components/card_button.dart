@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sneve/components/card_component.dart';
+import 'package:sneve/config/theme_config.dart';
 
 class CardButton extends StatelessWidget {
   final CardType type;
@@ -8,7 +9,7 @@ class CardButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        margin: const EdgeInsets.only(left: 12, bottom: 6),
+        margin: const EdgeInsets.only(bottom: 6),
         decoration: BoxDecoration(
           boxShadow: [
             BoxShadow(
@@ -37,7 +38,9 @@ class CardButton extends StatelessWidget {
                   Text(
                     getText(),
                     style: TextStyle(
-                        color: Color(getColor()), fontWeight: FontWeight.bold),
+                        fontSize: ThemeConfig.cardButtonStyle.textSize,
+                        color: Color(getColor()),
+                        fontWeight: FontWeight.bold),
                   )
                 ],
               )),
