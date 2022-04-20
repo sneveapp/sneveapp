@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:sneve/components/card_component.dart';
+import 'package:sneve/components/eventlist_popup.dart';
 import 'package:sneve/components/main_navigation_bar.dart';
 import 'package:sneve/components/wow_button.dart';
 import 'package:sneve/pages/events_view.dart';
+import 'package:sneve/services/eventlist.dart';
 
 void main() {
   runApp(const MyApp());
@@ -60,11 +62,11 @@ class MyHomePage extends StatefulWidget {
 
 class MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 0;
-  static const List<Widget> _widgetOptions = <Widget>[
-    Text("Home"),
-    Text("Social"),
-    EventsView(),
-    Text("Profile"),
+  static final List<Widget> _widgetOptions = <Widget>[
+    const Text("Home"),
+    const Text("Social"),
+    const Text("Library"),
+    EventlistPopup(EventList("Sneve Development")),
   ];
 
   int getSelectedIndex() {
@@ -80,7 +82,7 @@ class MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: Text("My Eventlist")),
+        appBar: AppBar(title: const Text("My Eventlist")),
         body: Center(
           child: _widgetOptions[_selectedIndex],
           ),
