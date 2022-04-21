@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import '../components/card_component.dart';
 
 class EventsView extends StatefulWidget {
-  const EventsView({Key? key}) : super(key: key);
+  final ScrollController controller;
+  const EventsView(this.controller, {Key? key}) : super(key: key);
 
   @override
   State<EventsView> createState() => _EventsViewState();
@@ -12,7 +13,7 @@ class EventsView extends StatefulWidget {
 class _EventsViewState extends State<EventsView> {
   @override
   Widget build(BuildContext context) {
-    return ListView(children: const [
+    return ListView(controller: widget.controller, children: const [
       SizedBox(
         height: 12,
       ),
