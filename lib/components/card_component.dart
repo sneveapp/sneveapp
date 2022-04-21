@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:sneve/components/card_button.dart';
 import 'package:sneve/components/wow_button.dart';
+import 'package:sneve/config/theme_config.dart';
 
 enum CardType { memory, event }
 
 class CardComponent extends StatelessWidget {
-  final double _radius = 12;
-
   final CardType type;
   final String name;
   final String? imageUrl;
@@ -17,10 +16,16 @@ class CardComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final double _width = MediaQuery.of(context).size.width * 0.9;
-    final double _height = MediaQuery.of(context).size.height * 0.3;
-    const double _badgeSize = 75;
-    const int _badgeColor = 0xff000000;
+    final double _width = MediaQuery.of(context).size.width *
+                ThemeConfig.cardComponentStyle.widthPercent <=
+            ThemeConfig.cardComponentStyle.maxWidth
+        ? MediaQuery.of(context).size.width *
+            ThemeConfig.cardComponentStyle.widthPercent
+        : ThemeConfig.cardComponentStyle.maxWidth;
+    final double _height = MediaQuery.of(context).size.height *
+        ThemeConfig.cardComponentStyle.heightPercent;
+    final double _badgeSize = ThemeConfig.cardComponentStyle.badgeSize;
+    final Color _badgeColor = ThemeConfig.cardComponentStyle.badgeColor;
 
     return GestureDetector(
         child: Stack(
@@ -29,20 +34,26 @@ class CardComponent extends StatelessWidget {
               width: _width,
               height: _height,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(_radius)),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.withOpacity(0.6),
-                    spreadRadius: 3,
-                    blurRadius: 5,
-                    offset: const Offset(0, 3), // changes position of shadow
-                  ),
-                ],
+                borderRadius: BorderRadius.all(Radius.circular(
+                    ThemeConfig.cardComponentStyle.borderRadius)),
+                boxShadow: MediaQuery.of(context).platformBrightness ==
+                        Brightness.light
+                    ? [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.6),
+                          spreadRadius: 3,
+                          blurRadius: 5,
+                          offset:
+                              const Offset(0, 3), // changes position of shadow
+                        ),
+                      ]
+                    : null,
               ),
             ),
             imageUrl != null
                 ? ClipRRect(
-                    borderRadius: BorderRadius.circular(_radius),
+                    borderRadius: BorderRadius.circular(
+                        ThemeConfig.cardComponentStyle.borderRadius),
                     child: Image.network(
                       imageUrl!,
                       fit: BoxFit.fitWidth,
@@ -59,8 +70,10 @@ class CardComponent extends StatelessWidget {
                   height: _height / 1.5,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(_radius),
-                          bottomRight: Radius.circular(_radius)),
+                          bottomLeft: Radius.circular(
+                              ThemeConfig.cardComponentStyle.borderRadius),
+                          bottomRight: Radius.circular(
+                              ThemeConfig.cardComponentStyle.borderRadius)),
                       gradient: LinearGradient(
                           begin: const Alignment(0, 0),
                           end: const Alignment(0, -1),
@@ -73,10 +86,20 @@ class CardComponent extends StatelessWidget {
             Container(
                 width: _width,
                 height: _height,
-                padding: const EdgeInsets.all(8),
-                margin: const EdgeInsets.only(bottom: 15),
+                padding: EdgeInsets.only(
+                    left: ThemeConfig.cardComponentStyle.padding,
+                    bottom: ThemeConfig.cardComponentStyle.padding,
+                    right: ThemeConfig.cardComponentStyle.wowButtonMargin,
+                    top: ThemeConfig.cardComponentStyle.wowButtonMargin),
+                margin: EdgeInsets.only(
+                    bottom: ThemeConfig.cardComponentStyle.bottomMargin),
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(_radius)),
+                  border: MediaQuery.of(context).platformBrightness ==
+                          Brightness.dark
+                      ? Border.all(color: Colors.grey, width: 0.5)
+                      : null,
+                  borderRadius: BorderRadius.all(Radius.circular(
+                      ThemeConfig.cardComponentStyle.borderRadius)),
                 ),
                 alignment: Alignment.bottomCenter,
                 child: Column(children: [
@@ -89,16 +112,15 @@ class CardComponent extends StatelessWidget {
                   ),
                   Row(
                     children: [
-                      const SizedBox(
-                        width: 12,
-                      ),
                       Container(
-                        width: MediaQuery.of(context).size.width * 0.8,
+                        width: _width * 0.9,
                         child: Text(
                           name,
                           style: TextStyle(
                               fontSize:
-                                  16 * MediaQuery.of(context).size.width / 250,
+                                  ThemeConfig.cardComponentStyle.titleSize *
+                                      MediaQuery.of(context).size.width /
+                                      250,
                               fontWeight: FontWeight.bold,
                               color: Color(getTextColor())),
                         ),
@@ -174,11 +196,12 @@ class CardComponent extends StatelessWidget {
   }
 
   Widget getBadge(
-      double _width, double _height, double _badgeSize, int _badgeColor) {
+      double _width, double _height, double _badgeSize, Color _badgeColor) {
     switch (type) {
       case CardType.memory:
         return ClipRRect(
-            borderRadius: BorderRadius.all(Radius.circular(_radius)),
+            borderRadius: BorderRadius.all(
+                Radius.circular(ThemeConfig.cardComponentStyle.borderRadius)),
             child: Container(
               width: _width,
               height: _height,
@@ -195,9 +218,9 @@ class CardComponent extends StatelessWidget {
                           width: _badgeSize,
                           height: _badgeSize,
                           decoration: BoxDecoration(
-                              color: Color(_badgeColor),
+                              color: _badgeColor,
                               borderRadius: const BorderRadius.only(
-                                  bottomLeft: Radius.circular(100))),
+                                  bottomLeft: Radius.circular(999))),
                         ),
                       ],
                     ),
