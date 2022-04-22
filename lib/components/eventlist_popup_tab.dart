@@ -34,7 +34,7 @@ class _EventlistPopupTabState extends State<EventlistPopupTab> {
                 color: Colors.deepOrange[700]!
                     .withOpacity(widget.selected ? 0.4 : 0)),
           ),
-          padding: EdgeInsets.only(top: 5, bottom: 5, right: 10, left: 10),
+          padding: EdgeInsets.only(top: 4, bottom: 4, right: 8, left: 8),
           child: Text(
             widget.text,
             style: TextStyle(

@@ -7,7 +7,11 @@ class Tag extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        constraints: BoxConstraints(maxHeight: MediaQuery.of(context).size.height * 0.05, maxWidth: MediaQuery.of(context).size.width * 0.3,),
+        margin: EdgeInsets.all(0.5),
+        constraints: BoxConstraints(
+          maxHeight: MediaQuery.of(context).size.height * 0.05,
+          //maxWidth: MediaQuery.of(context).size.width * 0.3,
+        ),
         child: OutlinedButton(
             style: ButtonStyle(
                 shape: MaterialStateProperty.all<RoundedRectangleBorder>(
@@ -15,6 +19,9 @@ class Tag extends StatelessWidget {
                         borderRadius: BorderRadius.circular(40),
                         side: const BorderSide(color: Colors.black)))),
             onPressed: () {},
-            child: Text(_text)));
+            child: Text(
+              _text,
+              style: TextStyle(overflow: TextOverflow.ellipsis),
+            )));
   }
 }
