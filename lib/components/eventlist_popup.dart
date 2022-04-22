@@ -1,5 +1,6 @@
 // ignore_for_file: sized_box_for_whitespace
 
+import 'package:sneve/services/sneve_user.dart';
 import 'package:swipe_to/swipe_to.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -30,7 +31,7 @@ class _EventlistPopupState extends State<EventlistPopup> {
   bool bookmarked = false;
   var views = [
     const EventScrollView(),
-    EventlistDescriptionView(EventList("", "", [])),
+    EventlistDescriptionView(EventList("", "", [], DateTime.now(), 0, 0, SneveUser(""))),
     const EventlistAlikeView()
   ];
   int _selectedIndex = 0;
@@ -123,7 +124,7 @@ class _EventlistPopupState extends State<EventlistPopup> {
                         Align(
                             alignment: Alignment.centerLeft,
                             child: Text(
-                              widget.getEventList().getName(),
+                              widget.getEventList().name,
                               style: TextStyle(
                                   fontWeight: FontWeight.w600, fontSize: 20),
                             )),
@@ -196,7 +197,8 @@ class _EventlistPopupState extends State<EventlistPopup> {
                     ),
                     pinned: true,
                   ),
-                  Container(child: views[_selectedIndex])
+                  Container(
+                    child: views[_selectedIndex])
                 ],
               ),
               onLeftSwipe: handleSwipeLeft,
