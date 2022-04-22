@@ -37,29 +37,28 @@ class _EventlistPopupState extends State<EventlistPopup> {
     return DraggableScrollableSheet(
       initialChildSize: .5,
       minChildSize: .0,
-      maxChildSize: 1,
+      maxChildSize: 0.95,
       builder: (BuildContext context, ScrollController scrollController) {
         return Container(
-            decoration: const BoxDecoration(
-              boxShadow: [
-                BoxShadow(
-                    spreadRadius: 3,
-                    blurRadius: 10,
-                    offset: Offset(0, -5),
-                    color: Colors.grey)
-              ],
-              color: Colors.white,
-              border: Border(
-                top: BorderSide(color: Colors.white, width: 1),
-              ),
-            ),
+            decoration: BoxDecoration(
+                color: Colors.white,
+                boxShadow: [
+                  BoxShadow(
+                      color: Colors.black.withOpacity(0.5),
+                      offset: Offset(0, -1),
+                      blurRadius: 5,
+                      spreadRadius: 1)
+                ],
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(12),
+                    topRight: Radius.circular(12))),
             child: CustomScrollView(
               controller: scrollController,
               slivers: [
                 SliverAppBar(
                   expandedHeight: MediaQuery.of(context).size.height * .15,
                   collapsedHeight: MediaQuery.of(context).size.height * .15,
-                  backgroundColor: Colors.white,
+                  backgroundColor: Colors.white.withOpacity(0),
                   flexibleSpace: Container(
                     decoration: const BoxDecoration(
                       color: Colors.white,
@@ -70,7 +69,7 @@ class _EventlistPopupState extends State<EventlistPopup> {
                     padding: const EdgeInsets.all(20),
                     child: Column(children: [
                       SizedBox(
-                        height: 20,
+                        height: MediaQuery.of(context).size.height * 0.01,
                         child: Center(
                           child: Container(
                             height: 5,

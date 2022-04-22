@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:sneve/components/card_component.dart';
+import 'package:sneve/components/eventlist_popup.dart';
+import 'package:sneve/components/eventlist_view.dart';
+import 'package:sneve/services/eventlist.dart';
 
 class SocialView extends StatelessWidget {
   const SocialView({Key? key}) : super(key: key);
@@ -6,7 +10,26 @@ class SocialView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Text("Social"),
-    );
+        child: Stack(
+      children: [
+        Center(
+            child: Column(children: [
+          CardComponent(
+            type: CardType.event,
+            name: "Débogage de Sneve",
+            imageUrl:
+                "https://s2.qwant.com/thumbr/0x380/5/3/a1c27641a67895a805bd66f5a599d83001c50c5d73b4a0d59f84d04c48f7e0/coffee-fellows-1.JPG?u=https%3A%2F%2Fwww.mux.de%2Fimages%2F1500x1200z%2Fobject%2F54%2F1188509354%2Fcoffee-fellows-1.JPG&q=0&b=1&p=0&a=0",
+          ),
+          Center(
+              child: CardComponent(
+            type: CardType.event,
+            name: "Débogage de Sneve 2",
+            imageUrl:
+                "https://s2.qwant.com/thumbr/0x380/5/3/a1c27641a67895a805bd66f5a599d83001c50c5d73b4a0d59f84d04c48f7e0/coffee-fellows-1.JPG?u=https%3A%2F%2Fwww.mux.de%2Fimages%2F1500x1200z%2Fobject%2F54%2F1188509354%2Fcoffee-fellows-1.JPG&q=0&b=1&p=0&a=0",
+          )),
+        ])),
+        EventlistView(eventlist: EventList("Développement de l'appli Sneve")),
+      ],
+    ));
   }
 }
