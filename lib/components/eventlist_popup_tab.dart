@@ -22,15 +22,26 @@ class _EventlistPopupTabState extends State<EventlistPopupTab> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        print("${widget.text} clicked");
-        widget.handler();
-      },
-      child: Text(
-        widget.text,
-        style: TextStyle(
-            color: widget.selected ? Colors.deepOrange : Colors.black),
-      ),
-    );
+        onTap: () {
+          print("${widget.text} clicked");
+          widget.handler();
+        },
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.all(Radius.circular(4)),
+            border: Border.all(
+                width: 1,
+                color: Colors.deepOrange[700]!
+                    .withOpacity(widget.selected ? 0.4 : 0)),
+          ),
+          padding: EdgeInsets.only(top: 5, bottom: 5, right: 10, left: 10),
+          child: Text(
+            widget.text,
+            style: TextStyle(
+              color: widget.selected ? Colors.black : Colors.black,
+              fontSize: 15,
+            ),
+          ),
+        ));
   }
 }
