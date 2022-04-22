@@ -7,6 +7,8 @@ class Event extends Activity {
   final String imageUrl;
   @override
   final String name;
+  @override
+  final List tags;
 
-  Event({required this.imageUrl, required this.name});
+  Event({required this.imageUrl, required this.name, required this.tags});
 }
