@@ -7,6 +7,8 @@ class Memory extends Activity {
   final String imageUrl;
   @override
   final String name;
+    @override
+  final List tags;
 
-  Memory({required this.imageUrl, required this.name});
+  Memory({required this.imageUrl, required this.name, required this.tags});
 }
