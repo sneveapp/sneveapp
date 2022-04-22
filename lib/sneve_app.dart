@@ -4,6 +4,7 @@ import 'package:sneve/components/main_navigation_bar.dart';
 import 'package:sneve/config/theme_config.dart';
 import 'package:sneve/pages/events_view.dart';
 import 'package:sneve/pages/home_view.dart';
+import 'package:sneve/pages/library_view.dart';
 import 'package:sneve/pages/profile_view.dart';
 import 'package:sneve/pages/social_view.dart';
 import 'package:sneve/sneve_theme.dart';
@@ -37,7 +38,7 @@ class MainViewState extends State<MainView> {
   static const List<Widget> _widgetOptions = <Widget>[
     HomeView(),
     SocialView(),
-    EventsView(),
+    LibraryView(),
     ProfileView(),
   ];
 
