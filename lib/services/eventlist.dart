@@ -10,7 +10,7 @@ class EventList {
   int numberOfSaves;
   int numberOfStarts;
   SneveUser author;
-  List events;
+  List activities;
 
   EventList(
       {required this.name,
@@ -20,7 +20,7 @@ class EventList {
       required this.numberOfSaves,
       required this.numberOfStarts,
       required this.author,
-      required this.events});
+      required this.activities});
 
 
   String getCreationDateAsString() {
