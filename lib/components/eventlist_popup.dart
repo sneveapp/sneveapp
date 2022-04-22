@@ -30,19 +30,7 @@ class EventlistPopup extends StatefulWidget {
 
 class _EventlistPopupState extends State<EventlistPopup> {
   bool bookmarked = false;
-  List views = [
-    const EventScrollView(),
-    EventlistDescriptionView(EventList(
-        name: "",
-        description: "",
-        alike: [],
-        creationDate: DateTime.now(),
-        numberOfSaves: 0,
-        numberOfStarts: 0,
-        author: SneveUser(""),
-        events: [])),
-    const EventlistAlikeView()
-  ];
+  late List views;
   int _selectedIndex = 0;
 
   void bookmarkTapped() {
@@ -76,7 +64,15 @@ class _EventlistPopupState extends State<EventlistPopup> {
 
   @override
   Widget build(BuildContext context) {
-    views[1] = EventlistDescriptionView(widget.getEventList());
+    setState(() {
+      views = [
+        EventScrollView(eventList: widget._eventList),
+        EventlistDescriptionView(eventList: widget._eventList),
+        EventlistAlikeView(
+          eventList: widget._eventList,
+        )
+      ];
+    });
 
     return NotificationListener<DraggableScrollableNotification>(
         onNotification: (notification) {
@@ -226,7 +222,7 @@ class _EventlistPopupState extends State<EventlistPopup> {
                   ),
                   onLeftSwipe: handleSwipeLeft,
                   onRightSwipe: handleSwipeRight,
-                  animationDuration: const Duration(milliseconds: 50),
+                  animationDuration: const Duration(milliseconds: 25),
                   offsetDx: 0,
                   iconSize: 0,
                 ));

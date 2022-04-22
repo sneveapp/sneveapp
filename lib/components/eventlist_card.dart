@@ -17,7 +17,9 @@ class EventlistCard extends StatefulWidget {
   }
 
   void destroyPopupFromOutside() {
-    _eventlistCardState._destroyEventListPopup();
+    if (_eventlistCardState != null) {
+      _eventlistCardState._destroyEventListPopup();
+    }
   }
 }
 
@@ -35,7 +37,7 @@ class _EventlistCardState extends State<EventlistCard> {
     setState(() {
       _popup = OverlayEntry(builder: (context) {
         return DefaultTextStyle(
-            style: TextStyle(),
+            style: TextStyle(color: Colors.black),
             child: EventlistView(
               eventlist: widget.eventlist,
               creator: widget,
@@ -73,6 +75,7 @@ class _EventlistCardState extends State<EventlistCard> {
               _showEventlistPopup(context);
             },
             child: Container(
+              margin: EdgeInsets.only(bottom: 8),
               padding: EdgeInsets.all(16),
               decoration: BoxDecoration(
                 color: Colors.white,
@@ -82,10 +85,10 @@ class _EventlistCardState extends State<EventlistCard> {
                     ? [
                         BoxShadow(
                           color: Colors.grey.withOpacity(0.6),
-                          spreadRadius: 3,
+                          spreadRadius: 0.5,
                           blurRadius: 5,
                           offset:
-                              const Offset(0, 3), // changes position of shadow
+                              const Offset(0, 2), // changes position of shadow
                         ),
                       ]
                     : null,
@@ -94,7 +97,12 @@ class _EventlistCardState extends State<EventlistCard> {
                         ? Border.all(color: Colors.grey, width: 0.5)
                         : null,
               ),
-              child: Row(children: [Text(widget.eventlist.getName())]),
+              child: Row(children: [
+                Text(
+                  widget.eventlist.name,
+                  style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16),
+                )
+              ]),
             )));
   }
 }

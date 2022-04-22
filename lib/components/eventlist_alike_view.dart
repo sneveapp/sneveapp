@@ -8,7 +8,7 @@ class EventlistAlikeView extends StatelessWidget {
   final EventList eventList;
   EventlistAlikeView({required this.eventList, Key? key}) : super(key: key);
 
-  List<Widget> tags = [];
+  Set<Widget> tags = {};
 
   @override
   Widget build(BuildContext context) {
@@ -20,15 +20,15 @@ class EventlistAlikeView extends StatelessWidget {
 
     return SliverList(
         delegate: SliverChildListDelegate([
-      Container(
+      Center(
+          child: Container(
+        width: MediaQuery.of(context).size.width * 0.9,
         child: Wrap(
-          children: tags,
-          alignment: WrapAlignment.spaceEvenly,
+          children: tags.toList(),
+          alignment: WrapAlignment.start,
           spacing: 5,
         ),
-        constraints:
-            BoxConstraints(maxWidth: MediaQuery.of(context).size.width * 0.9),
-      ),
+      )),
     ]));
   }
 }
