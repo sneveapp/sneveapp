@@ -2,6 +2,7 @@
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:sneve/components/eventlist_popup_tab.dart';
 import 'package:sneve/pages/events_view.dart';
 import 'package:sneve/services/eventlist.dart';
 
@@ -22,6 +23,7 @@ class EventlistPopup extends StatefulWidget {
 
 class _EventlistPopupState extends State<EventlistPopup> {
   bool bookmarked = false;
+  int _selectedIndex = 0;
 
   void bookmarkTapped() {
     setState(() {
@@ -30,6 +32,14 @@ class _EventlistPopupState extends State<EventlistPopup> {
     if (kDebugMode) {
       print("Bookmark button has been pressed. Bookmarked is now $bookmarked");
     }
+  }
+
+  VoidCallback handleTabClick(int index) {
+    return () {
+      setState(() {
+        _selectedIndex = index;
+      });
+    };
   }
 
   @override
@@ -56,8 +66,8 @@ class _EventlistPopupState extends State<EventlistPopup> {
               controller: scrollController,
               slivers: [
                 SliverAppBar(
-                  expandedHeight: MediaQuery.of(context).size.height * .15,
-                  collapsedHeight: MediaQuery.of(context).size.height * .15,
+                  expandedHeight: MediaQuery.of(context).size.height * .21,
+                  collapsedHeight: MediaQuery.of(context).size.height * .21,
                   backgroundColor: Colors.white.withOpacity(0),
                   flexibleSpace: Container(
                     decoration: const BoxDecoration(
@@ -82,17 +92,21 @@ class _EventlistPopupState extends State<EventlistPopup> {
                           ),
                         ),
                       ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            widget.getEventList().getName(),
+                            style: TextStyle(
+                                fontWeight: FontWeight.w600, fontSize: 20),
+                          )),
+                      SizedBox(
+                        height: 10,
+                      ),
                       Row(
                         children: [
-                          Text(widget.getEventList().getName()),
-                          const Spacer(),
-                          IconButton(
-                            onPressed: bookmarkTapped,
-                            icon: bookmarked
-                                ? const Icon(Icons.bookmark)
-                                : const Icon(Icons.bookmark_add_outlined),
-                            iconSize: 30,
-                          ),
                           OutlinedButton(
                               onPressed: () => {},
                               style: const ButtonStyle(
@@ -106,18 +120,34 @@ class _EventlistPopupState extends State<EventlistPopup> {
                                 SizedBox(width: 12),
                                 Text("Start",
                                     style: TextStyle(color: Colors.black))
-                              ]))
+                              ])),
+                          IconButton(
+                            onPressed: bookmarkTapped,
+                            icon: bookmarked
+                                ? const Icon(Icons.bookmark)
+                                : const Icon(Icons.bookmark_add_outlined),
+                            iconSize: 30,
+                          ),
                         ],
                       ),
                       Center(
                         child: Container(
-                          width: MediaQuery.of(context).size.width * 0.7,
+                          width: MediaQuery.of(context).size.width * 0.75,
                           child: Row(children: [
-                            Text("Events"),
+                            EventlistPopupTab(
+                                text: "Events",
+                                handler: handleTabClick(0),
+                                selected: _selectedIndex == 0),
                             Spacer(),
-                            Text("Description"),
+                            EventlistPopupTab(
+                                text: "Description",
+                                handler: handleTabClick(1),
+                                selected: _selectedIndex == 1),
                             Spacer(),
-                            Text("Alike")
+                            EventlistPopupTab(
+                                text: "Alike",
+                                handler: handleTabClick(2),
+                                selected: _selectedIndex == 2),
                             /*TextButton(
                                 onPressed: () {}, child: const Text("Events")),
                             const Spacer(),
