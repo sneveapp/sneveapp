@@ -7,7 +7,7 @@ class Tag extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        margin: EdgeInsets.all(0.5),
+        margin: const EdgeInsets.all(0.5),
         constraints: BoxConstraints(
           maxHeight: MediaQuery.of(context).size.height * 0.05,
           //maxWidth: MediaQuery.of(context).size.width * 0.3,
@@ -21,7 +21,7 @@ class Tag extends StatelessWidget {
             onPressed: () {},
             child: Text(
               _text,
-              style: TextStyle(overflow: TextOverflow.ellipsis),
+              style: const TextStyle(overflow: TextOverflow.ellipsis),
             )));
   }
 }

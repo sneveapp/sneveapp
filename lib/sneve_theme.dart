@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:sneve/sneve_app.dart';
 
 class SneveTheme {
   const SneveTheme();

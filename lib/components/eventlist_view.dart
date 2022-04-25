@@ -1,7 +1,7 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:sneve/components/eventlist_popup.dart';
-import 'package:sneve/notifications/EventlistPopupNotification.dart';
+import 'package:sneve/notifications/eventlistPopupNotification.dart';
 import 'package:sneve/services/eventlist.dart';
 
 import 'eventlist_card.dart';
@@ -17,7 +17,9 @@ class EventlistView extends StatelessWidget {
   Widget build(BuildContext context) {
     return NotificationListener<EventlistPopupNotification>(
         onNotification: (notification) {
-          print("catch!");
+          if (kDebugMode) {
+            print("catch!");
+          }
           creator.destroyPopupFromOutside();
           return false;
         },

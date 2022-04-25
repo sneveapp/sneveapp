@@ -21,7 +21,7 @@ class EventlistAlikeView extends StatelessWidget {
     return SliverList(
         delegate: SliverChildListDelegate([
       Center(
-          child: Container(
+          child: SizedBox(
         width: MediaQuery.of(context).size.width * 0.9,
         child: Wrap(
           children: tags.toList(),

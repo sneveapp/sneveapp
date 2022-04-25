@@ -18,10 +18,10 @@ class EventlistDescriptionView extends StatelessWidget {
         ),
         Container(
             width: MediaQuery.of(context).size.width * 0.9,
-            margin: EdgeInsets.all(20),
-            padding: EdgeInsets.all(20),
+            margin: const EdgeInsets.all(20),
+            padding: const EdgeInsets.all(20),
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(8)),
+                borderRadius: const BorderRadius.all(Radius.circular(8)),
                 border: Border.all(color: Colors.grey, width: 0.5)),
             alignment: Alignment.topLeft,
             child: DefaultTextStyle(

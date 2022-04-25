@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:sneve/components/card_button.dart';
 import 'package:sneve/components/wow_button.dart';
@@ -104,15 +105,15 @@ class CardComponent extends StatelessWidget {
                 alignment: Alignment.bottomCenter,
                 child: Column(children: [
                   Row(
-                    children: [Spacer(), getWowButton()],
+                    children: [const Spacer(), getWowButton()],
                   ),
-                  Spacer(),
+                  const Spacer(),
                   Row(
-                    children: [CardButton(type: type), Spacer()],
+                    children: [CardButton(type: type), const Spacer()],
                   ),
                   Row(
                     children: [
-                      Container(
+                      SizedBox(
                         width: _width * 0.9,
                         child: Text(
                           name,
@@ -182,15 +183,21 @@ class CardComponent extends StatelessWidget {
     switch (type) {
       case CardType.memory:
         return () {
-          print("This is a memory");
+          if (kDebugMode) {
+            print("This is a memory");
+          }
         };
       case CardType.event:
         return () {
-          print("This is an event");
+          if (kDebugMode) {
+            print("This is an event");
+          }
         };
       default:
         return () {
-          print("");
+          if (kDebugMode) {
+            print("");
+          }
         };
     }
   }
@@ -202,10 +209,10 @@ class CardComponent extends StatelessWidget {
         return ClipRRect(
             borderRadius: BorderRadius.all(
                 Radius.circular(ThemeConfig.cardComponentStyle.borderRadius)),
-            child: Container(
+            child: SizedBox(
               width: _width,
               height: _height,
-              child: Container(
+              child: SizedBox(
                 height: _badgeSize,
                 child: Row(
                   children: [
@@ -229,9 +236,9 @@ class CardComponent extends StatelessWidget {
               ),
             ));
       case CardType.event:
-        return Text("");
+        return const Text("");
       default:
-        return Text("");
+        return const Text("");
     }
   }
 }

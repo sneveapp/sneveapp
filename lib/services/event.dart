@@ -1,5 +1,3 @@
-import 'package:flutter/cupertino.dart';
-
 import 'activity.dart';
 
 class Event extends Activity {

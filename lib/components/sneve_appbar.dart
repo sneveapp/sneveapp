@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:sneve/config/theme_config.dart';
-import 'package:sneve/sneve_theme.dart';
 import '../sneve_app.dart';
 
 class SneveAppBar extends StatefulWidget implements PreferredSizeWidget {
@@ -39,7 +38,7 @@ class _SneveAppBarState extends State<SneveAppBar> {
           children: [
             IconButton(
                 onPressed: () => print("social menu button pressed"),
-                icon: Icon(Icons.message))
+                icon: const Icon(Icons.message))
           ],
         );
       case 2:
@@ -60,7 +59,7 @@ class _SneveAppBarState extends State<SneveAppBar> {
             width: MediaQuery.of(context).size.width *
                 ThemeConfig.appBarStyle.widthPercent,
             padding: const EdgeInsets.only(bottom: 0),
-            decoration: BoxDecoration(),
+            decoration: const BoxDecoration(),
             child: Row(
               children: [
                 Text(getText(),
@@ -68,7 +67,7 @@ class _SneveAppBarState extends State<SneveAppBar> {
                         fontWeight: FontWeight.w600,
                         color: ThemeConfig.appBarStyle.titleColor,
                         fontSize: ThemeConfig.appBarStyle.titleSize)),
-                Spacer(),
+                const Spacer(),
                 getMenu()
               ],
             )));

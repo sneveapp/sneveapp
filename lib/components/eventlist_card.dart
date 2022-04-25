@@ -1,6 +1,7 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:sneve/components/eventlist_view.dart';
-import 'package:sneve/notifications/EventlistPopupNotification.dart';
+import 'package:sneve/notifications/eventlistPopupNotification.dart';
 import 'package:sneve/services/eventlist.dart';
 
 class EventlistCard extends StatefulWidget {
@@ -12,8 +13,7 @@ class EventlistCard extends StatefulWidget {
 
   @override
   State<EventlistCard> createState() {
-    _eventlistCardState = _EventlistCardState();
-    return _eventlistCardState;
+    return _eventlistCardState =_EventlistCardState();
   }
 
   void destroyPopupFromOutside() {
@@ -37,7 +37,7 @@ class _EventlistCardState extends State<EventlistCard> {
     setState(() {
       _popup = OverlayEntry(builder: (context) {
         return DefaultTextStyle(
-            style: TextStyle(color: Colors.black),
+            style: const TextStyle(color: Colors.black),
             child: EventlistView(
               eventlist: widget.eventlist,
               creator: widget,
@@ -66,7 +66,9 @@ class _EventlistCardState extends State<EventlistCard> {
     }
     return NotificationListener<EventlistPopupNotification>(
         onNotification: (notification) {
-          print("notif");
+          if (kDebugMode) {
+            print("notif");
+          }
           _destroyEventListPopup();
           return false;
         },
@@ -75,11 +77,11 @@ class _EventlistCardState extends State<EventlistCard> {
               _showEventlistPopup(context);
             },
             child: Container(
-              margin: EdgeInsets.only(bottom: 8),
-              padding: EdgeInsets.all(16),
+              margin: const EdgeInsets.only(bottom: 8),
+              padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
                 color: Colors.white,
-                borderRadius: BorderRadius.all(Radius.circular(8)),
+                borderRadius: const BorderRadius.all(Radius.circular(8)),
                 boxShadow: MediaQuery.of(context).platformBrightness ==
                         Brightness.light
                     ? [
@@ -100,7 +102,7 @@ class _EventlistCardState extends State<EventlistCard> {
               child: Row(children: [
                 Text(
                   widget.eventlist.name,
-                  style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16),
+                  style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 16),
                 )
               ]),
             )));
