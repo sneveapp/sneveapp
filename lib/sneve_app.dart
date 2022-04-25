@@ -2,13 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:sneve/components/sneve_appbar.dart';
 import 'package:sneve/components/main_navigation_bar.dart';
 import 'package:sneve/config/theme_config.dart';
-import 'package:sneve/notifications/EventlistPopupNotification.dart';
-import 'package:sneve/pages/events_view.dart';
 import 'package:sneve/pages/home_view.dart';
 import 'package:sneve/pages/library_view.dart';
 import 'package:sneve/pages/profile_view.dart';
 import 'package:sneve/pages/social_view.dart';
-import 'package:sneve/sneve_theme.dart';
 
 class SneveApp extends StatelessWidget {
   const SneveApp({Key? key}) : super(key: key);

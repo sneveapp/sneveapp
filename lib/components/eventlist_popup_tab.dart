@@ -1,5 +1,4 @@
-import 'dart:ffi';
-
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class EventlistPopupTab extends StatefulWidget {
@@ -23,18 +22,20 @@ class _EventlistPopupTabState extends State<EventlistPopupTab> {
   Widget build(BuildContext context) {
     return GestureDetector(
         onTap: () {
-          print("${widget.text} clicked");
+          if (kDebugMode) {
+            print("${widget.text} clicked");
+          }
           widget.handler();
         },
         child: Container(
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(4)),
+            borderRadius: const BorderRadius.all(Radius.circular(4)),
             border: Border.all(
                 width: 1,
                 color: Colors.deepOrange[700]!
                     .withOpacity(widget.selected ? 0.4 : 0)),
           ),
-          padding: EdgeInsets.only(top: 4, bottom: 4, right: 8, left: 8),
+          padding: const EdgeInsets.only(top: 4, bottom: 4, right: 8, left: 8),
           child: Text(
             widget.text,
             style: TextStyle(

@@ -34,7 +34,7 @@ class CardButton extends StatelessWidget {
               child: Row(
                 children: [
                   Icon(getIcon(), color: Color(getColor())),
-                  SizedBox(width: 8),
+                  const SizedBox(width: 8),
                   Text(
                     getText(),
                     style: TextStyle(

@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:sneve/components/card_component.dart';
-import 'package:sneve/components/eventlist_card.dart';
-import 'package:sneve/components/eventlist_view.dart';
-import 'package:sneve/components/tag.dart';
 import 'package:sneve/services/eventlist.dart';
 import 'package:sneve/services/memory.dart';
 import 'package:sneve/services/sneve_user.dart';
 
+import '../components/eventlist_card.dart';
 import '../services/event.dart';
 
 class LibraryView extends StatefulWidget {
@@ -75,7 +72,7 @@ class _LibraryViewState extends State<LibraryView> {
     for (EventList eventlist in events) {
       eventlists.add(EventlistCard(eventlist: eventlist));
     }
-    return Container(
+    return SizedBox(
       width: MediaQuery.of(context).size.width * 0.9,
       child: ListView(children: eventlists),
     );

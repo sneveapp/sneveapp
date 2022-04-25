@@ -1,6 +1,5 @@
 // ignore_for_file: sized_box_for_whitespace
 
-import 'package:sneve/services/sneve_user.dart';
 import 'package:swipe_to/swipe_to.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -8,12 +7,9 @@ import 'package:sneve/components/eventlist_popup_tab.dart';
 import 'package:sneve/components/event_scroll_view.dart';
 import 'package:sneve/components/eventlist_alike_view.dart';
 import 'package:sneve/components/eventlist_description.dart';
-import 'package:sneve/notifications/EventlistPopupNotification.dart';
-import 'package:sneve/pages/events_view.dart';
+import 'package:sneve/notifications/eventlistPopupNotification.dart';
 
 import 'package:sneve/services/eventlist.dart';
-
-import 'card_component.dart';
 
 class EventlistPopup extends StatefulWidget {
   final EventList _eventList;
@@ -77,7 +73,9 @@ class _EventlistPopupState extends State<EventlistPopup> {
     return NotificationListener<DraggableScrollableNotification>(
         onNotification: (notification) {
           if (notification.extent <= 0.2) {
-            print("dispatch!");
+            if (kDebugMode) {
+              print("dispatch!");
+            }
             EventlistPopupNotification(eventlist: widget._eventList)
               ..dispatch(context);
           }
@@ -94,11 +92,11 @@ class _EventlistPopupState extends State<EventlistPopup> {
                     boxShadow: [
                       BoxShadow(
                           color: Colors.black.withOpacity(0.5),
-                          offset: Offset(0, -1),
+                          offset: const Offset(0, -1),
                           blurRadius: 5,
                           spreadRadius: 1)
                     ],
-                    borderRadius: BorderRadius.only(
+                    borderRadius: const BorderRadius.only(
                         topLeft: Radius.circular(12),
                         topRight: Radius.circular(12))),
                 child: SwipeTo(
@@ -135,18 +133,18 @@ class _EventlistPopupState extends State<EventlistPopup> {
                                 ),
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 10,
                             ),
                             Align(
                                 alignment: Alignment.centerLeft,
                                 child: Text(
                                   widget._eventList.name,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                       fontWeight: FontWeight.w600,
                                       fontSize: 20),
                                 )),
-                            SizedBox(
+                            const SizedBox(
                               height: 10,
                             ),
                             Row(
@@ -156,7 +154,7 @@ class _EventlistPopupState extends State<EventlistPopup> {
                                     style: ButtonStyle(
                                       padding: MaterialStateProperty.all<
                                               EdgeInsetsGeometry>(
-                                          EdgeInsets.only(
+                                          const EdgeInsets.only(
                                               left: 10,
                                               right: 10,
                                               top: 5,
@@ -192,7 +190,7 @@ class _EventlistPopupState extends State<EventlistPopup> {
                                 ),
                               ],
                             ),
-                            Divider(),
+                            const Divider(),
                             Center(
                                 child: Container(
                               width: MediaQuery.of(context).size.width * 0.6,
@@ -201,12 +199,12 @@ class _EventlistPopupState extends State<EventlistPopup> {
                                     text: "Events",
                                     handler: handleTabClick(0),
                                     selected: _selectedIndex == 0),
-                                Spacer(),
+                                const Spacer(),
                                 EventlistPopupTab(
                                     text: "Description",
                                     handler: handleTabClick(1),
                                     selected: _selectedIndex == 1),
-                                Spacer(),
+                                const Spacer(),
                                 EventlistPopupTab(
                                     text: "Alike",
                                     handler: handleTabClick(2),
